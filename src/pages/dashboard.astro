@@ -1,5 +1,5 @@
 ---
-// src/pages/dashboard.astro
+// src/pages/Dashboard.astro
 import IntensiveDashboard from '../components/IntensiveDashboard.jsx';
 import '../styles/tailwind.css';
 ---
@@ -9,6 +9,6 @@ import '../styles/tailwind.css';
     <title>Real-Time Data Dashboard</title>
   </head>
   <body class="bg-gray-50 flex items-center justify-center h-screen">
-    <IntensiveDashboard />
+    <IntensiveDashboard client:visible /> <!-- Ensures the component loads on the client side -->
   </body>
 </html>
