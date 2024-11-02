@@ -1,3 +1,13 @@
 {
-  "extends": "astro/tsconfigs/strict"
+  "compilerOptions": {
+    "target": "esnext",                     // Use 'esnext' for latest features
+    "module": "esnext",                     // Use ES modules
+    "jsx": "react-jsx",                     // Use 'react-jsx' if you're using React 17+
+    "strict": true,
+    "esModuleInterop": true,                 // Important for using common JS modules
+    "skipLibCheck": true,                    // Skip checking of declaration files
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src/**/*"],                  // Include all source files
+  "exclude": ["node_modules"]
 }
