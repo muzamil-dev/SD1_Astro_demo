@@ -1,4 +1,3 @@
-// src/components/WebcamWithGraph.tsx
 import React, { useEffect, useRef } from 'react';
 
 const WebcamWithGraph: React.FC = () => {
@@ -32,15 +31,27 @@ const WebcamWithGraph: React.FC = () => {
           // Draw the webcam video onto the canvas
           ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-          // Overlay a random graph
+          // Overlay a random line graph
           ctx.fillStyle = 'rgba(0, 0, 0, 0.5)';
           ctx.fillRect(0, canvas.height - 100, canvas.width, 100);
 
-          ctx.fillStyle = 'lime';
-          for (let i = 0; i < canvas.width; i += 10) {
-            const randomHeight = Math.random() * 100;
-            ctx.fillRect(i, canvas.height - randomHeight, 5, randomHeight);
+          ctx.strokeStyle = 'lime';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+
+          // Draw a random line graph
+          const step = 10;
+          let x = 0;
+          let y = canvas.height - Math.random() * 100;
+          ctx.moveTo(x, y);
+
+          while (x < canvas.width) {
+            y = canvas.height - 100 + Math.random() * 100; // Random y position within the overlay
+            x += step;
+            ctx.lineTo(x, y);
           }
+
+          ctx.stroke();
         }
         animationFrameId = requestAnimationFrame(renderFrame);
       };
@@ -65,7 +76,7 @@ const WebcamWithGraph: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <h1 className="text-2xl font-bold mb-4">Webcam with Random Graph</h1>
+      <h1 className="text-2xl font-bold mb-4">Webcam with Random Line Graph</h1>
       <canvas
         ref={canvasRef}
         width="640"
